@@ -7,11 +7,16 @@ import { ChildModule } from './child/child.module';
 import { CourseModule } from './course/course.module';
 import { ParentModule } from './parent/parent.module';
 import { MeetingModule } from './meeting/meeting.module';
+import { JwtModule } from '@nestjs/jwt';
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
     MongooseModule.forRoot(process.env.MONGO_CONNECTION_STRING),
+    JwtModule.register({
+      secret: 'SECRET',
+      signOptions: { expiresIn: '7d' },
+    }),
     UserModule,
     ChildModule,
     CourseModule,

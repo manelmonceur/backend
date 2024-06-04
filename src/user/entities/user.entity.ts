@@ -1,6 +1,8 @@
 // user.entity.ts
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
+import { Roles } from './Roles';
+import { Genders } from './Genders';
 
 export type UserDocument = User & Document;
 
@@ -13,10 +15,7 @@ export type UserDocument = User & Document;
 })
 export class User {
   @Prop({ required: true })
-  firstName: string;
-
-  @Prop({ required: true })
-  lastName: string;
+  name: string;
 
   @Prop({ required: true })
   phone: string;
@@ -24,10 +23,13 @@ export class User {
   @Prop({
     required: true,
   })
-  role: string;
+  role: Roles;
 
   @Prop({ required: true, unique: true })
   email: string;
+
+  @Prop({ required: true, default: 1 })
+  gender: Genders;
 
   @Prop({ required: true })
   password: string;
