@@ -14,6 +14,10 @@ export class CreateUserDto {
   gender: Genders;
 
   password: string;
+
+  firstMeetingDate: string;
+
+  accountStatus: boolean;
 }
 
 export class UpdateUserDto extends PartialType(CreateUserDto) {}

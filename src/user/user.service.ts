@@ -5,6 +5,7 @@ import { User, UserDocument } from './entities/user.entity';
 import { Model } from 'mongoose';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
+import { Roles } from './entities/Roles';
 
 @Injectable()
 export class UserService {
@@ -14,6 +15,9 @@ export class UserService {
   ) {}
 
   async create(createUserDto: CreateUserDto) {
+    if (createUserDto.role == Roles.PARENT) {
+      createUserDto.accountStatus = false;
+    }
     const existingUser = await this.userModel
       .findOne({
         email: createUserDto.email,

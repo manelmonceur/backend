@@ -7,6 +7,6 @@ import { MongooseModule } from '@nestjs/mongoose';
 @Module({
   imports: [MongooseModule.forFeature(forFeatureDb)],
   controllers: [MeetingController],
-  providers: [MeetingService],
+  providers: [MeetingService, MeetingService],
 })
 export class MeetingModule {}

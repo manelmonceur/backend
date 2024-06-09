@@ -9,12 +9,15 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Parent, ParentDocument } from './entities/parent.entity';
 import { Model } from 'mongoose';
 import * as bcrypt from 'bcrypt';
+import { User, UserDocument } from 'src/user/entities/user.entity';
+import { UpdateUserDto } from 'src/user/user.dto';
 
 @Injectable()
 export class ParentService {
   constructor(
     @InjectModel(Parent.name)
     private readonly parentModel: Model<ParentDocument>,
+    @InjectModel(User.name) private readonly userModel: Model<UserDocument>,
   ) {}
 
   async create(createParentDto: CreateParentDto) {
@@ -45,12 +48,12 @@ export class ParentService {
     return parent;
   }
 
-  async update(id: string, updateParentDto: UpdateParentDto) {
+  async update(id: string, updateParentDto: UpdateUserDto) {
     const { password, ...rest } = updateParentDto;
     const hashedPassword = password
       ? await bcrypt.hash(password, 10)
       : undefined;
-    const updatedUser = await this.parentModel.findByIdAndUpdate(
+    const updatedUser = await this.userModel.findByIdAndUpdate(
       id,
       { ...rest, ...(hashedPassword && { password: hashedPassword }) },
       { new: true },
@@ -62,7 +65,7 @@ export class ParentService {
   }
 
   async remove(id: string) {
-    const deletedUser = await this.parentModel.findByIdAndDelete(id).exec();
+    const deletedUser = await this.userModel.findByIdAndDelete(id).exec();
     if (!deletedUser) {
       throw new NotFoundException('User not found');
     }

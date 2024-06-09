@@ -25,18 +25,23 @@ export class MeetingController {
     return await this.meetingService.findAll();
   }
 
+  @Post('find')
+  async find(@Body() condition: any) {
+    return await this.meetingService.find(condition);
+  }
+
   @Get(':id')
   async findOne(@Param('id') id: string) {
-    return await this.meetingService.findOne(+id);
+    return await this.meetingService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateMeetingDto: UpdateMeetingDto) {
-    return this.meetingService.update(+id, updateMeetingDto);
+    return this.meetingService.update(id, updateMeetingDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.meetingService.remove(+id);
+  async remove(@Param('id') id: string) {
+    return await this.meetingService.remove(id);
   }
 }

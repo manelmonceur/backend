@@ -10,6 +10,7 @@ import {
 import { ParentService } from './parent.service';
 import { CreateParentDto } from './dto/create-parent.dto';
 import { UpdateParentDto } from './dto/update-parent.dto';
+import { UpdateUserDto } from 'src/user/user.dto';
 
 @Controller('parent')
 export class ParentController {
@@ -33,7 +34,7 @@ export class ParentController {
   @Patch(':id')
   async update(
     @Param('id') id: string,
-    @Body() updateParentDto: UpdateParentDto,
+    @Body() updateParentDto: UpdateUserDto,
   ) {
     return await this.parentService.update(id, updateParentDto);
   }

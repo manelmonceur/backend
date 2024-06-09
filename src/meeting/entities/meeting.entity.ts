@@ -18,7 +18,19 @@ export class Meeting {
   parent: string;
 
   @Prop({ required: true })
+  parent_email: string;
+
+  @Prop({ required: true })
   mentor: string;
+
+  @Prop({ required: true })
+  mentor_email: string;
+
+  @Prop({ required: true })
+  admin: string;
+
+  @Prop({ required: true })
+  admin_email: string;
 
   @Prop({ required: true })
   date: string;

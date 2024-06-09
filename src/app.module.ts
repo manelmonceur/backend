@@ -8,6 +8,7 @@ import { CourseModule } from './course/course.module';
 import { ParentModule } from './parent/parent.module';
 import { MeetingModule } from './meeting/meeting.module';
 import { JwtModule } from '@nestjs/jwt';
+import { MessagesModule } from './messages/messages.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { JwtModule } from '@nestjs/jwt';
     CourseModule,
     ParentModule,
     MeetingModule,
+    MessagesModule,
   ],
   controllers: [AuthController],
   providers: [],
