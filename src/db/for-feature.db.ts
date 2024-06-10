@@ -4,6 +4,7 @@ import { Course, CourseSchema } from 'src/course/entities/course.entity';
 import { Parent, ParentSchema } from 'src/parent/entities/parent.entity';
 import { Meeting, MeetingSchema } from 'src/meeting/entities/meeting.entity';
 import { MessageSchema, Messages } from 'src/messages/entities/message.entity';
+import { Payment, PaymentSchema } from 'src/payment/entities/payment.entity';
 
 export default [
   { name: User.name, schema: UserSchema },
@@ -12,4 +13,5 @@ export default [
   { name: Parent.name, schema: ParentSchema },
   { name: Meeting.name, schema: MeetingSchema },
   { name: Messages.name, schema: MessageSchema },
+  { name: Payment.name, schema: PaymentSchema },
 ];
